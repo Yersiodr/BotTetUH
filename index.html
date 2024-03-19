@@ -7,12 +7,15 @@
 </head>
 <body>
 <style type='text/css'>
-    .embeddedServiceHelpButton .helpButton .uiButton {
-        background-image: url("https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png");
-        background-color: transparent; /* Hacer el fondo original transparente para que la imagen se muestre */
-        font-family: "Arial", sans-serif;
-        color: white; /* Asegúrate de que el texto sea visible contra tu imagen de fondo, ajusta según sea necesario */
-    }
+        .embeddedServiceHelpButton .helpButton .uiButton {
+            width: 212px; /* Ajustar según el tamaño de tu imagen */
+            height: 86px; /* Ajustar según el tamaño de tu imagen */
+            background-image: url("https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png");
+            background-color: transparent;
+            background-size: cover; /* Asegura que la imagen cubra el botón */
+            border: none; /* Elimina el borde si es necesario */
+            text-indent: -9999px; /* Oculta el texto "Chat with an Expert" */
+        }
       .embeddedServiceHelpButton .helpButton .uiButton:focus {
             outline: 1px solid #005290;
       }
