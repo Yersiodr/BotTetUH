@@ -9,28 +9,33 @@
 <style type='text/css'>
         /* Ajustando el contenedor del botón */
         .embeddedServiceHelpButton .helpButton {
-                width: 212px; /* Ajusta al tamaño de tu imagen */
-                height: 86px; /* Ajusta al tamaño de tu imagen */
-                background-image: url("https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png");
-                background-color: transparent;
-                background-size: cover; /* O prueba con 'contain' o dimensiones específicas */
-                background-position: center center; /* Ajusta esto según sea necesario para alinear la imagen */
-                border: none;
-                display: flex; /* Esto asegura que el div contenedor se ajuste al contenido */
-                align-items: center;
-                justify-content: center;
+            width: 212px; /* Ancho exacto de tu imagen */
+            height: 86px; /* Alto exacto de tu imagen */
+            background-image: url("https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png");
+            background-color: transparent;
+            background-size: 212px 86px; /* Asegura que la imagen no se estire ni se comprima */
+            background-repeat: no-repeat; /* Evita la repetición de la imagen */
+            background-position: center; /* Centra la imagen en el contenedor */
+            border: none; /* Elimina cualquier borde */
+            display: block; /* Utiliza block para asegurar que el div se comporta como se espera */
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Asegura que nada se desborde del contenedor */
         }
         
-        /* Ocultando el botón original para que no interfiera visualmente */
+        /* Haciendo el botón original completamente transparente y funcional */
         .embeddedServiceHelpButton .helpButton .uiButton {
-            overflow: visible; 
-            opacity: 0; /* Hace el botón original completamente transparente */
-            width: 100%; /* Expande el botón original para cubrir todo el contenedor */
+            opacity: 0; /* El botón es transparente, pero aún clicable */
+            position: absolute; /* Posiciona absolutamente para que ocupe todo el contenedor padre */
+            width: 100%;
             height: 100%;
+            background: transparent; /* Asegura que el fondo sea transparente */
         }
-      .embeddedServiceHelpButton .helpButton .uiButton:focus {
-            outline: 1px solid #005290;
-      }
+        
+        /* Ajusta el foco para que no altere visualmente el diseño */
+        .embeddedServiceHelpButton .helpButton .uiButton:focus {
+            outline: none; /* Elimina el contorno al enfocar */
+        }
 </style>
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
