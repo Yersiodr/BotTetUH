@@ -9,17 +9,14 @@
 <style type='text/css'>
         /* Ajustando el contenedor del botón */
         .embeddedServiceHelpButton .helpButton {
-            width: 212px; /* Ajusta al tamaño de tu imagen */
-            height: 86px; /* Ajusta al tamaño de tu imagen */
-            background-image: url("https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png");
-            background-color: transparent;
-            background-size: cover; /* O prueba con 'contain' o dimensiones específicas */
-            background-position: center center; /* Ajusta esto según sea necesario para alinear la imagen */
-            border: none;
-            display: flex; /* Esto asegura que el div contenedor se ajuste al contenido */
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
+            background-image: url('https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png');
+            background-color: transparent; /* Elimina cualquier color de fondo */
+            background-size: cover; /* Asegura que la imagen cubra completamente el botón */
+            width: 100px; /* Ajusta al ancho de tu imagen */
+            height: 50px; /* Ajusta a la altura de tu imagen */
+            border-radius: 25px; /* Ajusta para emular la forma de tu imagen */
+            border: none; /* Elimina el borde */
+            text-indent: -9999px; /* Oculta el texto */
         }
         
         /* Ocultando el botón original para que no interfiera visualmente */
@@ -88,31 +85,6 @@
       } else {
             initESW('https://service.force.com');
       }
-        document.addEventListener("DOMContentLoaded", function() {
-        // Verifica si el botón del chatbot ya se ha renderizado
-        var chatButton = document.querySelector(".embeddedServiceHelpButton .helpButton .uiButton");
-        
-        if (chatButton) {
-            // Oculta el botón original
-            chatButton.style.opacity = "0";
-    
-            // Crea el nuevo elemento visual que se parecerá al botón
-            var newButton = document.createElement("div");
-            newButton.innerHTML = "<img src='https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png' style='width: 100px; height: 50px;' />";
-            newButton.style.cursor = "pointer";
-            newButton.style.position = "fixed";
-            newButton.style.bottom = "20px"; // Ajusta según sea necesario
-            newButton.style.right = "20px"; // Ajusta según sea necesario
-    
-            // Añade el nuevo elemento a la página
-            document.body.appendChild(newButton);
-    
-            // Asigna el evento de click para abrir el chatbot
-            newButton.addEventListener("click", function() {
-                chatButton.click();
-            });
-        }
-    });
 </script>
 </body>
 </html>
