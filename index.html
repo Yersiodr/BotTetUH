@@ -9,11 +9,16 @@
 <style type='text/css'>
         /* Ajustando el contenedor del botón */
         .embeddedServiceHelpButton .helpButton {
-            width: 212px; /* Ancho de tu imagen */
-            height: 86px; /* Alto de tu imagen */
+            width: 212px; /* Ajusta al tamaño de tu imagen */
+            height: 86px; /* Ajusta al tamaño de tu imagen */
             background-image: url("https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png");
-            background-size: cover; /* Asegura que la imagen cubra completamente el contenedor */
-            border: none; /* Opcional: elimina el borde si es necesario */
+            background-color: transparent;
+            background-size: 212px 86px; /* Asegúrate de que la imagen cubra el botón. Puedes usar cover si quieres que llene el espacio completamente */
+            background-position: center; /* Ajusta la posición si es necesario */
+            border: none;
+            display: flex; /* Esto asegura que el div contenedor se ajuste al contenido */
+            align-items: center;
+            justify-content: center;
         }
         
         /* Ocultando el botón original para que no interfiera visualmente */
