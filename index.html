@@ -19,10 +19,12 @@
             display: flex; /* Esto asegura que el div contenedor se ajuste al contenido */
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
         }
         
         /* Ocultando el botón original para que no interfiera visualmente */
         .embeddedServiceHelpButton .helpButton .uiButton {
+            overflow: visible; 
             opacity: 0; /* Hace el botón original completamente transparente */
             width: 100%; /* Expande el botón original para cubrir todo el contenedor */
             height: 100%;
