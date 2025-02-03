@@ -36,60 +36,23 @@
             outline: none; /* Elimina el contorno al enfocar */
         }
 </style>
-<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
-      var initESW = function(gslbBaseURL) {
-            embedded_svc.settings.displayHelpButton = true; //O falso
-            embedded_svc.settings.language = ''; //Por ejemplo, introduzca 'en' o 'en-US'
-            embedded_svc.settings.smallCompanyLogoImgURL = 'https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png'
-            embedded_svc.settings.avatarImgURL = 'https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png'
-            embedded_svc.settings.chatbotAvatarImgURL = 'https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/4b6d64cc-4242-4b4d-a435-4d50c417c982.png'
-
-            //embedded_svc.settings.defaultMinimizedText = '...'; //(Toma como valor predeterminado Sesión de chat con un experto)
-            //embedded_svc.settings.disabledMinimizedText = '...'; //(Toma como valor predeterminado Agente sin conexión)
-
-            //embedded_svc.settings.loadingText = ''; //(Toma como valor predeterminado Cargando)
-            //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Establece el dominio para su desarrollo de modo que los visitantes puedan navegar por subdominios durante una sesión de chat)
-
-            // Configuración para Chat
-            //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-                  // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-                  // Returns a valid button ID.
-            //};
-            //embedded_svc.settings.prepopulatedPrechatFields = {}; //Establece la cumplimentación automática de los campos del formulario previo al chat
-            //embedded_svc.settings.fallbackRouting = []; //Una matriz de identificadores de botones, de usuario o userId_buttonId
-            //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Toma como valor predeterminado la opción Contacto)
-
-            embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-            embedded_svc.settings.entryFeature = 'LiveAgent';
-
-            embedded_svc.init(
-                  'https://universidadhispanoamericana.my.salesforce.com',
-                  'https://universidadhispanoamericana.my.site.com/',
-                  gslbBaseURL,
-                  '00D5f000006Pl6r',
-                  'WEBCHAT',
-                  {
-                        baseLiveAgentContentURL: 'https://c.la1-core1.sfdc-lywfpd.salesforceliveagent.com/content',
-                        deploymentId: '5725f000000QXjB',
-                        buttonId: '5735f000000QYcW',
-                        baseLiveAgentURL: 'https://d.la1-core1.sfdc-lywfpd.salesforceliveagent.com/chat',
-                        eswLiveAgentDevName: 'WEBCHAT',
-                        isOfflineSupportEnabled: false
-                  }
-            );
-      };
-
-      if (!window.embedded_svc) {
-            var s = document.createElement('script');
-            s.setAttribute('src', 'https://universidadhispanoamericana.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-            s.onload = function() {
-                  initESW(null);
-            };
-            document.body.appendChild(s);
-      } else {
-            initESW('https://service.force.com');
-      }
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'es'; // For example, enter 'en' or 'en-US'
+			embeddedservice_bootstrap.init(
+				'00D5f000006Pl6r',
+				'UH_Mejorado_service',
+				'https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166',
+				{
+					scrt2URL: 'https://universidadhispanoamericana.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
 </script>
+<script type='text/javascript' src='https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
 </html>
