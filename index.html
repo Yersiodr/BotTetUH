@@ -7,50 +7,22 @@
 </head>
 <body>
 <script type='text/javascript'>
-    function initEmbeddedMessaging() {
-        try {
-            embeddedservice_bootstrap.settings.language = 'es'; // For example, enter 'en' or 'en-US'
-            embeddedservice_bootstrap.init(
-                '00D5f000006Pl6r',
-                'UH_Mejorado_service',
-                'https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166',
-                {
-                    scrt2URL: 'https://universidadhispanoamericana.my.salesforce-scrt.com'
-                }
-            );
-            
-            // Agregar estilos dinámicamente
-            var style = document.createElement('style');
-            style.innerHTML = `
-                .embedded_service_iframe-frame-layout {
-                    width: 100px;
-                    height: 110px !important;
-                    background-image: url("https://image.marketing.uh.ac.cr/lib/fe2e11737164047c7d1779/m/1/37a2d891-7150-4dfa-a7dc-ad8d25371a20.png");
-                    background-color: transparent;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    border: none;
-                    display: block;
-                    align-items: center;
-                    justify-content: center;
-                    overflow: hidden;
-                }
-                .embeddedServiceHelpButton .helpButton .uiButton {
-                    opacity: 0;
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    background: transparent;
-                }
-                .embeddedServiceHelpButton .helpButton .uiButton:focus {
-                    outline: none;
-                }
-            `;
-            document.head.appendChild(style);
-        } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
-        }
-    };
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'es'; // For example, enter 'en' or 'en-US'
+            embeddedservice_bootstrap.settings.chatbotAvatarImgURL = "https://universidadhispanoamericana.my.salesforce.com/sfc/p/5f000006Pl6r/a/5f000002djq2/5_WVinMZix76bbtikRL4VCPNEV65PLQiLNLLPjnktwA"
+			embeddedservice_bootstrap.init(
+				'00D5f000006Pl6r',
+				'UH_Mejorado_service',
+				'https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166',
+				{
+					scrt2URL: 'https://universidadhispanoamericana.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
 </script>
 <script type='text/javascript' src='https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
