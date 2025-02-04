@@ -22,7 +22,7 @@
         window._invitationResource = (function() {
             console.log("Invitation loaded");
 
-            embedded_svc.config.invitation.htmlMarkup =
+            embeddedservice_bootstrap.config.invitation.htmlMarkup =
                 `<div class="embeddedServiceInvitation" id="snapins_invite">
                     <div class="embeddedServiceInvitationHeader">
                         <img id="embeddedServiceAvatar" src="https://yourimagehere.png">
@@ -38,7 +38,7 @@
                     </div>
                 </div>`;
 
-            embedded_svc.config.invitation.styles = `
+            embeddedservice_bootstrap.config.invitation.styles = `
                 #snapins_invite { background-color: #FFFFFF; border-radius: 8px; font-family: Arial; }
                 .embeddedServiceInvitationHeader { background-color: #222222; padding: 10px; display: flex; align-items: center; }
                 .embeddedServiceInvitationHeader img { width: 40px; height: 40px; border-radius: 50%; }
@@ -49,7 +49,7 @@
                 #rejectInvite { background-color: white; color: #005290; border: 1px solid #005290; }
             `;
 
-            embedded_svc.config.invitation.invitationAPIs =
+            embeddedservice_bootstrap.config.invitation.invitationAPIs =
                 `(function() {
                     document.getElementById("closeInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
                     document.getElementById("rejectInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
