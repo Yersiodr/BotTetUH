@@ -19,47 +19,58 @@
 	            }
 	        );
 	
-        window._invitationResource = (function() {
-            console.log("Invitation loaded");
+        // Usamos un observer para esperar a que `embedded_svc` se cargue
+        const observer = new MutationObserver(() => {
+            if (window.embeddedservice_bootstrap && embeddedservice_bootstrap.config) {
+                console.log("Salesforce Chat cargado. Aplicando configuraciones...");
 
-            embeddedservice_bootstrap.config.invitation.htmlMarkup =
-                `<div class="embeddedServiceInvitation" id="snapins_invite">
-                    <div class="embeddedServiceInvitationHeader">
-                        <img id="embeddedServiceAvatar" src="https://yourimagehere.png">
-                        <span class="embeddedServiceTitleText">¿Necesitas ayuda?</span>
-                        <button type="button" id="closeInvite" class="embeddedServiceCloseIcon">&times;</button>
-                    </div>
-                    <div class="embeddedServiceInvitationBody">
-                        <p>¿En qué podemos ayudarte?</p>
-                    </div>
-                    <div class="embeddedServiceInvitationFooter">
-                        <button type="button" id="rejectInvite">Cerrar</button>
-                        <button type="button" id="acceptInvite">Iniciar Chat</button>
-                    </div>
-                </div>`;
+                embeddedservice_bootstrap.config.invitation = embedded_svc.config.invitation || {};
+                embeddedservice_bootstrap.config.invitation.htmlMarkup = `
+                    <div class="embeddedServiceInvitation" id="snapins_invite">
+                        <div class="embeddedServiceInvitationHeader">
+                            <img id="embeddedServiceAvatar" src="https://yourimagehere.png">
+                            <span class="embeddedServiceTitleText">¿Necesitas ayuda?</span>
+                            <button type="button" id="closeInvite" class="embeddedServiceCloseIcon">&times;</button>
+                        </div>
+                        <div class="embeddedServiceInvitationBody">
+                            <p>¿En qué podemos ayudarte?</p>
+                        </div>
+                        <div class="embeddedServiceInvitationFooter">
+                            <button type="button" id="rejectInvite">Cerrar</button>
+                            <button type="button" id="acceptInvite">Iniciar Chat</button>
+                        </div>
+                    </div>`;
 
-            embeddedservice_bootstrap.config.invitation.styles = `
-                #snapins_invite { background-color: #FFFFFF; border-radius: 8px; font-family: Arial; }
-                .embeddedServiceInvitationHeader { background-color: #222222; padding: 10px; display: flex; align-items: center; }
-                .embeddedServiceInvitationHeader img { width: 40px; height: 40px; border-radius: 50%; }
-                .embeddedServiceInvitationBody { padding: 10px; }
-                .embeddedServiceInvitationFooter { text-align: right; padding: 10px; }
-                .embeddedServiceInvitationFooter button { padding: 8px; margin: 4px; border-radius: 4px; cursor: pointer; }
-                #acceptInvite { background-color: #005290; color: white; }
-                #rejectInvite { background-color: white; color: #005290; border: 1px solid #005290; }
-            `;
+                embeddedservice_bootstrap.config.invitation.styles = `
+                    #snapins_invite { background-color: #FFFFFF; border-radius: 8px; font-family: Arial; }
+                    .embeddedServiceInvitationHeader { background-color: #222222; padding: 10px; display: flex; align-items: center; }
+                    .embeddedServiceInvitationHeader img { width: 40px; height: 40px; border-radius: 50%; }
+                    .embeddedServiceInvitationBody { padding: 10px; }
+                    .embeddedServiceInvitationFooter { text-align: right; padding: 10px; }
+                    .embeddedServiceInvitationFooter button { padding: 8px; margin: 4px; border-radius: 4px; cursor: pointer; }
+                    #acceptInvite { background-color: #005290; color: white; }
+                    #rejectInvite { background-color: white; color: #005290; border: 1px solid #005290; }
+                `;
 
-            embeddedservice_bootstrap.config.invitation.invitationAPIs =
-                `(function() {
-                    document.getElementById("closeInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
-                    document.getElementById("rejectInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
-                    document.getElementById("acceptInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.acceptInvite(); });
-                    document.addEventListener("keyup", function(event) { if (event.keyCode == 27) { embedded_svc.inviteAPI.inviteButton.rejectInvite(); }});
-                })();`;
-        })();
-	    } catch (err) {
-	        console.error('Error loading Embedded Messaging: ', err);
-	    }
+                embeddedservice_bootstrap.config.invitation.invitationAPIs =
+                    `(function() {
+                        document.getElementById("closeInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
+                        document.getElementById("rejectInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
+                        document.getElementById("acceptInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.acceptInvite(); });
+                        document.addEventListener("keyup", function(event) { if (event.keyCode == 27) { embedded_svc.inviteAPI.inviteButton.rejectInvite(); }});
+                    })();`;
+
+                // Detenemos el observer porque ya no es necesario
+                observer.disconnect();
+            }
+        });
+
+        // Observamos cambios en el `body` esperando la carga de Salesforce Chat
+        observer.observe(document.body, { childList: true, subtree: true });
+
+    } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+    }
 	};
 </script>
 <script type='text/javascript' src='https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
