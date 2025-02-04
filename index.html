@@ -19,20 +19,44 @@
 	            }
 	        );
 	
-	        // Asegurar que los estilos se aplican después de la carga del chat
-	        setTimeout(() => {
-	            var style = document.createElement("style");
-	            style.innerHTML = `
-	                .minimizedButtonWrapper {
-	                    background-image: url("https://universidadhispanoamericana.my.salesforce.com/sfc/p/5f000006Pl6r/a/5f000002djq2/5_WVinMZix76bbtikRL4VCPNEV65PLQiLNLLPjnktwA") !important;
-	                    background-size: cover !important;
-	                    width: 100px !important;
-	                    height: 100px !important;
-	                }
-	            `;
-	            document.head.appendChild(style);
-	        }, 2000); // Esperar 2 segundos para que el chat cargue
-	
+        window._invitationResource = (function() {
+            console.log("Invitation loaded");
+
+            embedded_svc.config.invitation.htmlMarkup =
+                `<div class="embeddedServiceInvitation" id="snapins_invite">
+                    <div class="embeddedServiceInvitationHeader">
+                        <img id="embeddedServiceAvatar" src="https://yourimagehere.png">
+                        <span class="embeddedServiceTitleText">¿Necesitas ayuda?</span>
+                        <button type="button" id="closeInvite" class="embeddedServiceCloseIcon">&times;</button>
+                    </div>
+                    <div class="embeddedServiceInvitationBody">
+                        <p>¿En qué podemos ayudarte?</p>
+                    </div>
+                    <div class="embeddedServiceInvitationFooter">
+                        <button type="button" id="rejectInvite">Cerrar</button>
+                        <button type="button" id="acceptInvite">Iniciar Chat</button>
+                    </div>
+                </div>`;
+
+            embedded_svc.config.invitation.styles = `
+                #snapins_invite { background-color: #FFFFFF; border-radius: 8px; font-family: Arial; }
+                .embeddedServiceInvitationHeader { background-color: #222222; padding: 10px; display: flex; align-items: center; }
+                .embeddedServiceInvitationHeader img { width: 40px; height: 40px; border-radius: 50%; }
+                .embeddedServiceInvitationBody { padding: 10px; }
+                .embeddedServiceInvitationFooter { text-align: right; padding: 10px; }
+                .embeddedServiceInvitationFooter button { padding: 8px; margin: 4px; border-radius: 4px; cursor: pointer; }
+                #acceptInvite { background-color: #005290; color: white; }
+                #rejectInvite { background-color: white; color: #005290; border: 1px solid #005290; }
+            `;
+
+            embedded_svc.config.invitation.invitationAPIs =
+                `(function() {
+                    document.getElementById("closeInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
+                    document.getElementById("rejectInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); });
+                    document.getElementById("acceptInvite").addEventListener("click", function() { embedded_svc.inviteAPI.inviteButton.acceptInvite(); });
+                    document.addEventListener("keyup", function(event) { if (event.keyCode == 27) { embedded_svc.inviteAPI.inviteButton.rejectInvite(); }});
+                })();`;
+        })();
 	    } catch (err) {
 	        console.error('Error loading Embedded Messaging: ', err);
 	    }
