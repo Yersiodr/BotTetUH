@@ -1,42 +1,51 @@
 <html>
    <script type='text/javascript'>
       function initEmbeddedMessaging() {
-        try {
-            embeddedservice_bootstrap.settings.language = 'es'; // Configurar idioma
-            // Ocultar el botón de chat predeterminado al cargar la página
-            embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
-            embeddedservice_bootstrap.init(
-                '00D5f000006Pl6r', // Tu código de snippet
-                'UH_Mejorado_service', // Nombre del servicio
-                'https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166', // URL del servicio
-                {
-                    scrt2URL: 'https://universidadhispanoamericana.my.salesforce-scrt.com' // URL de SCRT
-                }
-            );
-            // Hacer que el botón estándar sea transparente
-            setTimeout(function() {
-                var standardButton = document.querySelector('.embeddedServiceHelpButton .helpButton');
-                if (standardButton) {
-                    standardButton.style.backgroundColor = 'transparent';
-                    standardButton.style.border = 'none';
-                    standardButton.style.boxShadow = 'none';
-                }
-            }, 1000); // Esperar 1 segundo para asegurarse de que el botón esté en el DOM
-        } catch (err) {
-            console.error('Error al cargar Embedded Messaging: ', err);
-        }
-      };
+          try {
+              console.log("Inicializando Embedded Messaging...");
+              
+              embeddedservice_bootstrap.settings.language = 'es'; 
+              embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
+              
+              embeddedservice_bootstrap.init(
+                  '00D5f000006Pl6r',
+                  'UH_Mejorado_service',
+                  'https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166',
+                  {
+                      scrt2URL: 'https://universidadhispanoamericana.my.salesforce-scrt.com'
+                  }
+              );
+      
+              // Esperar a que Salesforce Embedded Service termine de cargar
+              embeddedservice_bootstrap.on("afterInit", function () {
+                  console.log("Embedded Messaging inicializado correctamente");
+              });
+      
+              setTimeout(function() {
+                  var standardButton = document.querySelector('.embeddedServiceHelpButton .helpButton');
+                  if (standardButton) {
+                      standardButton.style.backgroundColor = 'transparent';
+                      standardButton.style.border = 'none';
+                      standardButton.style.boxShadow = 'none';
+                  }
+              }, 1000);
+      
+          } catch (err) {
+              console.error('Error al cargar Embedded Messaging:', err);
+          }
+      }
 
-    function launchChat() {
+   function launchChat() {
+       if (embeddedservice_bootstrap?.utilAPI?.launchChat) {
            embeddedservice_bootstrap.utilAPI.launchChat()
-               .then(() => {
-                   console.log('Chat lanzado exitosamente');
-               }).catch(() => {
-                   console.log('Ocurrió un error al lanzar el chat');
-               }).finally(() => {
-                   console.log('Finalización del lanzamiento del chat');
-               });
+               .then(() => console.log('Chat lanzado exitosamente'))
+               .catch(() => console.log('Ocurrió un error al lanzar el chat'))
+               .finally(() => console.log('Finalización del lanzamiento del chat'));
+       } else {
+           console.error("Error: utilAPI.launchChat no está disponible aún. Esperando...");
+           setTimeout(launchChat, 1000); // Intenta de nuevo después de 1 segundo
        }
+   }
    </script>
    <!-- Preload del CSS con el atributo "as" (sintaxis de autocierre) -->
    <link rel="preload" href="https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166/assets/styles/salesforce-lightning-design-system.min.css?2067152fc8" as="style" />
