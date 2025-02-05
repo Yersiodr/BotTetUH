@@ -26,6 +26,17 @@
             console.error('Error al cargar Embedded Messaging: ', err);
         }
       };
+
+    function launchChat() {
+           embeddedservice_bootstrap.utilAPI.launchChat()
+               .then(() => {
+                   console.log('Chat lanzado exitosamente');
+               }).catch(() => {
+                   console.log('Ocurrió un error al lanzar el chat');
+               }).finally(() => {
+                   console.log('Finalización del lanzamiento del chat');
+               });
+       }
    </script>
    <!-- Preload del CSS con el atributo "as" (sintaxis de autocierre) -->
    <link rel="preload" href="https://universidadhispanoamericana.my.site.com/ESWUHMejoradoservice1728491835166/assets/styles/salesforce-lightning-design-system.min.css?2067152fc8" as="style" />
@@ -39,16 +50,4 @@
                alt="Botón de chat"/>
          </div>
    </div>
-   <script>
-    function launchChat() {
-           embeddedservice_bootstrap.utilAPI.launchChat()
-               .then(() => {
-                   console.log('Chat lanzado exitosamente');
-               }).catch(() => {
-                   console.log('Ocurrió un error al lanzar el chat');
-               }).finally(() => {
-                   console.log('Finalización del lanzamiento del chat');
-               });
-       }
-   </script>
 </html>
