@@ -25,13 +25,18 @@
 	};
 </script>
 <script type='text/javascript' src='https://universidadhispanoamericana.my.site.com/ESWTESTYer1739463835090/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-<script type='text/javascript'>
-	function bootstrapChat() {
-		embeddedservice_bootstrap.bootstrapEmbeddedService();
-	}
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function () {
+		// Esperar a que el elemento exista en el DOM
+		let checkExist = setInterval(() => {
+			let button = document.querySelector(".minimizedButtonWrapper[lwc-2tu55qmbbaf] .minimizedButton[lwc-2tu55qmbbaf]");
+			if (button) {
+				clearInterval(checkExist);
+				button.style.backgroundColor = "red";
+				button.style.border = "2px solid black";
+			}
+		}, 500); // Verifica cada 500ms
+	});
 </script>
-<button onclick="bootstrapChat()">
-	Click me to show the Embedded Chat experience.
-</button>
 </body>
 </html>
