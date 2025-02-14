@@ -32,8 +32,8 @@
 			let divElement = document.querySelector(".minimizedButtonWrapper[lwc-2tu55qmbbaf] .minimizedButton[lwc-2tu55qmbbaf]");
 			if (divElement) {
 				clearInterval(checkExist);
-				divElement.style.backgroundColor = "red";
-				divElement.style.border = "2px solid black";
+				divElement.style.setProperty("background-color", "red", "important");
+				divElement.style.setProperty("border", "2px solid black", "important");
 			}
 		}, 500); // Verifica cada 500ms
 	});
