@@ -29,11 +29,11 @@
 	document.addEventListener("DOMContentLoaded", function () {
 		// Esperar a que el elemento exista en el DOM
 		let checkExist = setInterval(() => {
-			let button = document.querySelector(".minimizedButtonWrapper[lwc-2tu55qmbbaf] .minimizedButton[lwc-2tu55qmbbaf]");
-			if (button) {
+			let divElement = document.querySelector(".minimizedButtonWrapper[lwc-2tu55qmbbaf] .minimizedButton[lwc-2tu55qmbbaf]");
+			if (divElement) {
 				clearInterval(checkExist);
-				button.style.backgroundColor = "red";
-				button.style.border = "2px solid black";
+				divElement.style.backgroundColor = "red";
+				divElement.style.border = "2px solid black";
 			}
 		}, 500); // Verifica cada 500ms
 	});
